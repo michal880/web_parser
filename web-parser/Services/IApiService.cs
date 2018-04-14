@@ -10,6 +10,6 @@ namespace web_parser.Services
     {
         bool sendRequest(string url);
 
-        bool getResponse();
+        string getResponse();
     }
 }

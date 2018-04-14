@@ -4,6 +4,8 @@ namespace web_parser.ViewModels
     public class UrlViewModel
     {
         [Required]
-        public string Url { get; set; }
+        public string ApiUrl { get; set; }
+        [Required]
+        public string ApiKey { get; set; }
     }
 }
