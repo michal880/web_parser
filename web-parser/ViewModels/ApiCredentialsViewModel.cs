@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 namespace web_parser.ViewModels
 {
-    public class UrlViewModel
+    public class ApiCredentialsViewModel
     {
         [Required]
-        public string ApiUrl { get; set; }
+        public string WebsiteUrl { get; set; }
         [Required]
         public string ApiKey { get; set; }
     }

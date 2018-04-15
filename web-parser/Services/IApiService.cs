@@ -8,7 +8,7 @@ namespace web_parser.Services
 {
     public interface IApiService
     {
-        bool sendRequest(string url);
+        bool sendRequest(string url, string apiKey);
 
         string getResponse();
     }

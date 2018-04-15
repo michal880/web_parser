@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-@model web_parser.ViewModels.UrlViewModel
+@model web_parser.ViewModels.ApiCredentialsViewModel
 <div class="jumbotron">
     <h1>Mercury Web Parser Wrapper</h1>
     <p class="lead">@ViewBag.Message</p>
@@ -10,8 +10,8 @@
 
 <form method="post">
     <div class="form-group">
-        <label for="ApiUrl">URL for the target API endpoint.</label>
-        <input type="text" name="ApiUrl" class="form-control" asp-for="ApiUrl" placeholder="Enter url">
+        <label for="WebsiteUrl">URL of the website</label>
+        <input type="text" name="WebsiteUrl" class="form-control" asp-for="WebsiteUrl" placeholder="Enter url">
     </div>
     <div class="form-group">
         <label for="ApiKey">Your Mercury Api key</label>
@@ -19,4 +19,5 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+<p>@ViewBag.Response</p>
 
