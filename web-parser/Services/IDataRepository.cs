@@ -13,5 +13,6 @@ namespace web_parser.Services
     {
         bool Add(ApiResponseViewModel response);
         List<Response> GetLastFive();
+        Response GetLast();
     }
 }

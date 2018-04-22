@@ -11,8 +11,11 @@ namespace web_parser.Controllers
     public class HomeController : Controller
     {
         private IApiService _apiService;
+        private IDataRepository _dataRepository;
+
         public HomeController()
         {
+            _dataRepository = new InMemoryDataRepository();
             _apiService = new ApiService();
         }
         [HttpGet]
@@ -28,6 +31,7 @@ namespace web_parser.Controllers
             ViewBag.Message = requestSucceeded;
             if(requestSucceeded)
             ViewBag.Response =  _apiService.getResponse();
+
             
 
             return View();
@@ -35,6 +39,7 @@ namespace web_parser.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
+            ViewBag.Response = _dataRepository.GetLastFive().Count;
             return View();
         }
 
