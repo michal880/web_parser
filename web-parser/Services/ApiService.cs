@@ -12,9 +12,9 @@ namespace web_parser.Services
 {
     public class ApiService : IApiService
     {
-        public ApiService()
+        public ApiService(IDataRepository dataRepository)
         {
-            _dataRepository = new InMemoryDataRepository();
+            _dataRepository = dataRepository;
         }
         private string baseUrl = "https://mercury.postlight.com/";
 

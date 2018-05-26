@@ -7,22 +7,26 @@ namespace web_parser.Services
 {
     public class InMemoryDataRepository : IDataRepository
     {
-        private static readonly Stack<Response> _responses = new Stack<Response>();
+        private static readonly Stack<Response> Responses = new Stack<Response>();
 
         public bool Add(ApiResponseViewModel sourceResponse)
         {
             var parsedResponse = CreateParsedResponse(sourceResponse);
-            _responses.Push(parsedResponse);
+            Responses.Push(parsedResponse);
             return true;
         }
 
         public Response GetLast()
         {
-            return _responses.Peek();
+            return Responses.Peek();
         }
-        public List<Response> GetLastFive()
+        public IQueryable<Response> GetAll()
         {
-            return _responses.Take(5).ToList();
+            return Responses.AsQueryable();
+        }
+        public IEnumerable<Response> GetLastFive()
+        {
+            return Responses.Take(5);
         }
 
         private Response CreateParsedResponse(ApiResponseViewModel sourceResponse)

@@ -11,8 +11,11 @@ namespace web_parser.Services
 {
     public interface IDataRepository
     {
-        bool Add(ApiResponseViewModel response);
-        List<Response> GetLastFive();
+        IQueryable<Response> GetAll();
         Response GetLast();
+        IEnumerable<Response> GetLastFive();
+        bool Add(ApiResponseViewModel response);
+       
+        
     }
 }

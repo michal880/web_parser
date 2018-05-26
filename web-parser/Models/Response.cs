@@ -21,7 +21,6 @@ namespace web_parser.Models
             Markups = GetMarkups(sourceResponse.Content);
             Date = DateTime.Now.ToLocalTime();
         }
-
         private static List<string> GetMarkups(string htmlContent)
         {
             var list = new List<string>();

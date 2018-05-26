@@ -3,9 +3,7 @@
 }
 @model web_parser.ViewModels.ApiCredentialsViewModel
 <div class="jumbotron">
-    <h1>Mercury Web Parser Wrapper</h1>
-    <p class="lead">@ViewBag.Message</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>Mercury Web Parser API Wrapper</h1>
 </div>
 
 <form method="post">
@@ -20,5 +18,9 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+@if (ViewBag.Message != null)
+{
+    <p class="lead">Response receipt status: @(@ViewBag.Message ? "Received" : "Not received")</p>
+}
 <p>@ViewBag.Response</p>
 
