@@ -8,6 +8,7 @@ using System.Web.WebPages;
 using web_parser.Services;
 using web_parser.ViewModels;
 using AutoMapper;
+using web_parser.Data;
 using web_parser.Models;
 
 namespace web_parser.Controllers

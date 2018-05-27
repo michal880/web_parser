@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using RestSharp;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web.Helpers;
 using RestSharp.Deserializers;
 using RestSharp.Extensions;
+using web_parser.Data;
 using web_parser.ViewModels;
 
 namespace web_parser.Services
@@ -22,30 +24,32 @@ namespace web_parser.Services
         private IDataRepository _dataRepository;
         public bool sendRequest(string url, string apiKey)
         {
-            var apiClient = new RestClient(baseUrl);
-            var request = new RestRequest("parser?", Method.GET);
-            request.RequestFormat = DataFormat.Json;
-            request.AddParameter("url", url);
-            request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("x-api-key", apiKey);
-            _response = apiClient.Execute(request);
-            System.Diagnostics.Debug.WriteLine(request.Parameters.FirstOrDefault().ToString());
-            System.Diagnostics.Debug.WriteLine(_response.ErrorMessage);
-
-            if (_response.StatusCode == HttpStatusCode.OK)
+            try
             {
-                // Newtonsoft.Json Deserialzer is not compatible with RestSharp's response when it comes to Json Date
-                var model = new JsonDeserializer().Deserialize<ApiResponseViewModel>(_response);
-                _dataRepository.Add(model);
-                return true;
-            }
+                var apiClient = new RestClient(baseUrl);
+                var request = new RestRequest("parser?", Method.GET);
+                request.RequestFormat = DataFormat.Json;
+                request.AddParameter("url", url);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddHeader("x-api-key", apiKey);
+                _response = apiClient.Execute(request);
+                System.Diagnostics.Debug.WriteLine(request.Parameters.FirstOrDefault().ToString());
+                System.Diagnostics.Debug.WriteLine(_response.ErrorMessage);
 
+                if (_response.StatusCode == HttpStatusCode.OK)
+                {
+                    var model = new JsonDeserializer().Deserialize<ApiResponseViewModel>(_response);
+                    _dataRepository.Add(model);
+                    return true;
+                }
+            }
+            catch(Exception ex)
+            {
+                // log ex
+            }
             return false;
         }
 
-        public string getResponse()
-        {
-            return _response.Content;
-        }
+        public string getResponse() => _response.Content ?? "";
     }
 }

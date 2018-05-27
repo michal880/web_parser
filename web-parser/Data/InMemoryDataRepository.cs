@@ -3,7 +3,7 @@ using System.Linq;
 using web_parser.Models;
 using web_parser.ViewModels;
 
-namespace web_parser.Services
+namespace web_parser.Data
 {
     public class InMemoryDataRepository : IDataRepository
     {

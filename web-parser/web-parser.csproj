@@ -161,8 +161,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ApiService.cs" />
     <Compile Include="Services\IApiService.cs" />
-    <Compile Include="Services\IDataRepository.cs" />
-    <Compile Include="Services\InMemoryDataRepository.cs" />
+    <Compile Include="Data\IDataRepository.cs" />
+    <Compile Include="Data\InMemoryDataRepository.cs" />
     <Compile Include="ViewModels\ApiCredentialsViewModel.cs" />
     <Compile Include="ViewModels\ApiResponseViewModel.cs" />
     <Compile Include="ViewModels\ResponseViewModel.cs" />

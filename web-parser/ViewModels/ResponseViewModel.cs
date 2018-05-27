@@ -10,6 +10,6 @@ namespace web_parser.ViewModels
         public DateTime Date { get; set; }
         public string SourceUrl { get; set; }
         public string SourceContent { get; set; }
-        public List<string> Markups { get; set; }
+        public List<string> TenMostOccurringMarkups { get; set; }
     }
 }

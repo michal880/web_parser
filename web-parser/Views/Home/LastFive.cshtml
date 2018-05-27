@@ -1,11 +1,31 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-@model  IEnumerable<web_parser.ViewModels.ResponseViewModel>
-@Model.Count()
-@foreach (var item in Model)
+﻿@functions
 {
-<div>@item.SourceUrl</div>
+
+    public string GetMarkupsAsString(IEnumerable<string> markups)
+    {
+        return string.Join(", ", markups);
+    }
+
 }
+@model  IEnumerable<web_parser.ViewModels.ResponseViewModel>
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Source Url</th>
+            <th>Source contnet</th>
+            <th>Ten most occurring markups</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Date</td>
+                <td>@item.SourceUrl</td>
+                <td>@item.SourceContent</td>
+                <td>@GetMarkupsAsString(item.TenMostOccurringMarkups)</td>
+            </tr>
+        }
+    </tbody>
+</table>
