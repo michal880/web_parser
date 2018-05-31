@@ -19,8 +19,32 @@
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 @if (ViewBag.Message != null)
-{
+{   <br/>
     <p class="lead">Response receipt status: @(@ViewBag.Message ? "Received" : "Not received")</p>
 }
-<p>@ViewBag.Response</p>
+    <div class="">
+        <div id="json-container"></div>
+    </div>
+
+@section scripts {
+    <script>
+        $(function() {
+            var jsonContainer = $('#json-container');
+
+            try {
+                jsonContainer
+                    .jsonPresenter(
+                        'destroy') 
+                    .jsonPresenter({ 
+                        json: @Html.Raw(ViewBag.Response)
+                    })
+                    .jsonPresenter('expand', 0); 
+            } catch (exception) {
+                console.log(exception.message);
+            }
+
+        });
+    </script>
+}
+
 

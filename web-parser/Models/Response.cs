@@ -30,14 +30,9 @@ namespace web_parser.Models
             {
                 if (item.Name != "#text")
                 {
-                    System.Diagnostics.Debug.WriteLine("Name         " + item.Name);
                     list.Add(item.Name);
                 }
             }
-            System.Diagnostics.Debug.WriteLine("####################### "+list.Count);
-            var most = list.GroupBy(i => i).OrderByDescending(grp => grp.Count())
-                .Select(grp => grp.Key).First();
-            System.Diagnostics.Debug.WriteLine("#######################  M " + most);
             return list;
         }
     }

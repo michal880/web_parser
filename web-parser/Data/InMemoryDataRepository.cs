@@ -24,11 +24,6 @@ namespace web_parser.Data
         {
             return Responses.AsQueryable();
         }
-        public IEnumerable<Response> GetLastFive()
-        {
-            return Responses.Take(5);
-        }
-
         private Response CreateParsedResponse(ApiResponseViewModel sourceResponse)
         {
             var response = new Response(sourceResponse);

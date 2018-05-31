@@ -9,7 +9,6 @@ namespace web_parser.Data
     {
         IQueryable<Response> GetAll();
         Response GetLast();
-        IEnumerable<Response> GetLastFive();
         bool Add(ApiResponseViewModel response);
        
         
