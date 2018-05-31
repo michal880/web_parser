@@ -7,6 +7,7 @@
 </div>
 
 <form method="post">
+    @Html.ValidationSummary()
     <div class="form-group">
         <label for="WebsiteUrl">URL of the website</label>
         <input type="text" name="WebsiteUrl" class="form-control" asp-for="WebsiteUrl" placeholder="Enter url">
