@@ -42,7 +42,7 @@ namespace web_parser.Controllers
             if (requestSucceeded)
             {
                 // this is workaround because RestSharp's json response does not properly format the HTML content(single quotation marks)
-                var response = _apiService.getResponse();
+                var response = _apiService.GetResponse();
                 var dateFormatSettings = new JsonSerializerSettings
                 {
                     DateFormatHandling = DateFormatHandling.IsoDateFormat,
@@ -56,10 +56,20 @@ namespace web_parser.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult LastFive()
+        public ActionResult PreviousFiveUrls()
         {
-            var model = _apiService.GetLastFive();
+            var model = _apiService.GetLastFiveUrls();
             return View(model);
+        }
+        [HttpGet]
+        public ActionResult ResponseStats()
+        {
+            if (_apiService.GetLastParsedResponse() != null)
+            {
+                var model = Mapper.Map<Response, ResponseViewModel>(_apiService.GetLastParsedResponse());
+                return View(model);
+            }
+            return RedirectToAction("Index");
         }
     }
 }

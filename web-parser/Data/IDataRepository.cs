@@ -7,10 +7,12 @@ namespace web_parser.Data
 {
     public interface IDataRepository
     {
-        IQueryable<Response> GetAll();
-        Response GetLast();
+        IQueryable<Response> GetAllResponses();
+        IQueryable<string> GetAllUrls();
+        Response GetLastResponse();
         bool Add(ApiResponseViewModel response);
-       
-        
+        bool Add(string attemptedUrl);
+
+
     }
 }

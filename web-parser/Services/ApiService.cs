@@ -36,7 +36,7 @@ namespace web_parser.Services
                 request.AddHeader("Content-Type", "application/json");
                 request.AddHeader("x-api-key", apiKey);
                 _response = apiClient.Execute(request);
-
+                _dataRepository.Add(url);
                 if (_response.StatusCode == HttpStatusCode.OK)
                 {
                     var model = new JsonDeserializer().Deserialize<ApiResponseViewModel>(_response);
@@ -55,13 +55,18 @@ namespace web_parser.Services
             return false;
         }
 
-        public ApiResponseViewModel getResponse() =>
+        public ApiResponseViewModel GetResponse() =>
             new JsonDeserializer().Deserialize<ApiResponseViewModel>(_response);
 
-        public IEnumerable<ResponseViewModel> GetLastFive()
+        public IEnumerable<string> GetLastFiveUrls()
         {
-            var query = _dataRepository.GetAll().Take(5);
-            return Mapper.Map<IEnumerable<Response>, IEnumerable<ResponseViewModel>>(query);
+            return _dataRepository.GetAllUrls().Skip(1).Take(5);
+
+        }
+
+        public Response GetLastParsedResponse()
+        {
+            return _dataRepository.GetLastResponse();
         }
 
     }

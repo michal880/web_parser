@@ -7,13 +7,16 @@
 </div>
 
 <form method="post">
+    @Html.ValidationSummary()
     <div class="form-group">
         <label for="WebsiteUrl">URL of the website</label>
         <input type="text" name="WebsiteUrl" class="form-control" asp-for="WebsiteUrl" placeholder="Enter url">
+
     </div>
     <div class="form-group">
         <label for="ApiKey">Your Mercury Api key</label>
         <input type="password" name="ApiKey" class="form-control" asp-for="ApiKey" placeholder="ApiKey">
+
         lOXlp4wT2KqLj1glKgNZYZIUnpltTWsn8UtV7Gaq
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
